@@ -1,24 +1,34 @@
-<?php
-function bubbleSort($arr) {
-    $n = count($arr);
-       do {
-    
-        $swapped = false;
-        for ($i = 0; $i < $n - 1; $i++) {
-            if ($arr[$i] > $arr[$i + 1]) {
-               $temp = $arr[$i];
-              $arr[$i]=$arr[$i + 1];
-              $arr[$i + 1]=$temp;
-                $swapped = true;
-            }
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fibonacci Series</title>
+</head>
+<body>
+    <h1>Fibonacci Series in PHP</h1>
+
+    <form method="POST">
+        <label for="n">Enter the number of terms:</label>
+        <input type="number" name="n" id="n" required>
+        <br>
+        <input type="submit" value="Generate Fibonacci Series">
+    </form>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $n = (int)$_POST["n"];
+        $a = 0;
+        $b = 1;
+
+        echo "<h2>Fibonacci Series:</h2>";
+
+        for ($i = 1; $i <= $n; $i++) {
+            echo $a . ", ";
+
+            $temp = $a;
+            $a = $b;
+            $b = $temp + $b;
         }
-    } while ($swapped);
-    return $arr;
-}
-
-$unsortedArray = [64, 34, 25, 12, 22, 11, 90];
-$sortedArray = bubbleSort($unsortedArray);
-
-echo "Original Array: " . implode(", ", $unsortedArray) . "<br>";
-echo "Sorted Array: " . implode(", ", $sortedArray);
-?>
+    }
+    ?>
+</body>
+</html>
